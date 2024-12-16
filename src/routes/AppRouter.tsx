@@ -1,7 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 //layout
 import MainLayout from "@layout/MainLayout/MainLayout";
@@ -36,7 +33,7 @@ const routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement : <Error/>,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -50,12 +47,15 @@ const routes = createBrowserRouter([
         path: "products/:prefix",
         element: <Products />,
         loader: ({ params }) => {
-          if(!/^[a-z]+$/i.test(params.prefix)){
-            throw new Response("bad requests",{
-              statusText:"category not found",
-              status:400
-            })
-          } 
+          if (
+            typeof params.prefix !== "string" ||
+            !/^[a-z]+$/i.test(params.prefix)
+          ) {
+            throw new Response("bad requests", {
+              statusText: "category not found",
+              status: 400,
+            });
+          }
           return true;
         },
       },
