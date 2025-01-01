@@ -19,4 +19,3 @@ const actGetCategories = createAsyncThunk(
 );
 
 export default actGetCategories;
-console.log("hello mohamed ")
