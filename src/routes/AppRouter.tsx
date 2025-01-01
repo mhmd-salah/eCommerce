@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 //layout
 import MainLayout from "@layout/MainLayout/MainLayout";
@@ -29,24 +29,15 @@ import Error from "@pages/Error";
 //     </>
 //   )
 // );
-const routes = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainLayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "categories",
-        element: <Categories />,
-      },
-      {
-        path: "products/:prefix",
-        element: <Products />,
-        loader: ({ params }) => {
+const routes = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<MainLayout />} errorElement={<Error />}>
+      <Route index element={<Home />} />
+      <Route path="categories" element={<Categories />} />
+      <Route
+        path="products/:prefix"
+        element={<Products />}
+        loader={({ params }) => {
           if (
             typeof params.prefix !== "string" ||
             !/^[a-z]+$/i.test(params.prefix)
@@ -57,26 +48,17 @@ const routes = createBrowserRouter([
             });
           }
           return true;
-        },
-      },
-      {
-        path: "about-us",
-        element: <AboutUs />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
-    ],
-  },
-]);
-
+        }}
+      />
+      <Route path="about-us" element={<AboutUs />} />
+      <Route path="register" element={<Register />} />
+      <Route path="login" element={<Login />} />
+    </Route>
+  )
+);
 const AppRouter = () => {
   return <RouterProvider router={routes} />;
 };
 
 export default AppRouter;
+

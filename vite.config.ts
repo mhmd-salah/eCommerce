@@ -9,5 +9,6 @@ export default defineConfig({
   plugins: [react(),svgr(),tsconfigPaths()],
   server:{
     port: 3000,
+    open:true
   }
 })
