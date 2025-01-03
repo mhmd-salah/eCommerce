@@ -33,13 +33,13 @@ const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />} errorElement={<Error />}>
       <Route index element={<Home />} />
-      <Route path="categories" element={<Categories />} />
+      <Route path="/categories" element={<Categories />} />
       <Route
-        path="products/:prefix"
+        path="categories/products/:prefix"
         element={<Products />}
         loader={({ params }) => {
           if (
-            typeof params.prefix !== "string" ||
+            typeof params.prefix !== "string" || 
             !/^[a-z]+$/i.test(params.prefix)
           ) {
             throw new Response("bad requests", {

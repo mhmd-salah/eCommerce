@@ -30,6 +30,7 @@
       "@layout/*":["src/layout/*"],
       "@util/*":["src/util/*"],
       "@services/*":["src/services/*"],
+      "@customTypes/*":["src/types/*"],
     },
     // absolute path imports
 

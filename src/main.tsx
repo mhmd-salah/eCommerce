@@ -10,5 +10,5 @@ const rootComponent = createRoot(rootHtml!);
 rootComponent.render(
   <Provider store={store}>
     <AppRouter />
-  </Provider>
+  </Provider> 
 );
