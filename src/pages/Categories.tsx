@@ -10,8 +10,10 @@ const Categories = () => {
     (state) => state.categories
   );
   useEffect(() => {
-    dispatch(actGetCategories());
-  }, []);
+    if (!records.length) {
+      dispatch(actGetCategories());
+    }
+  }, [dispatch,records]);
   const categoriesList =
     records.length > 0
       ? records.map((record) => (

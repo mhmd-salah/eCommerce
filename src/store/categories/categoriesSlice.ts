@@ -19,7 +19,7 @@ const categoriesSlice = createSlice({
   name: "categories",
   initialState,
   reducers: {
-    cleanUp: (state) => {
+    productsCleanUp: (state) => {
       state.records = [];
       state.loading = "idle";
       state.error = null;
@@ -44,5 +44,5 @@ const categoriesSlice = createSlice({
 });
 
 export { actGetCategories };
-export const {cleanUp} = categoriesSlice.actions;
+export const {productsCleanUp} = categoriesSlice.actions;
 export default categoriesSlice.reducer;

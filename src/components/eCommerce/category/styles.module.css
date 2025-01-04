@@ -1,22 +1,21 @@
-.category{
-  width: 180px;
-  height: 180px;
-}
 
-.category a{
+.category a {
   text-decoration: none;
   color: black;
 }
 
-.categoryImg{
+.categoryImg {
   overflow: hidden;
-  border-radius: 50%;
+  border-radius: 8px;
+  background-color: rgba(119, 119, 119, 0.078);
+  width: 180px;
+  height: 180px;
 }
-.categoryImg img{
+.categoryImg img {
   width: 100%;
 }
-.categoryTitle{
+.categoryTitle {
   text-align: center;
-  font-size: 16px;
-  margin-top:10px;
+  font-size: 18px;
+  margin-top: 10px;
 }
