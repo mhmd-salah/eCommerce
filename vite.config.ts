@@ -5,14 +5,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [react(), svgr(), tsconfigPaths()],
-  root: "./src",
-  mode:"development",
-  publicDir: "../public",
+
   server: {
     port: 3001,
     open: true,
-  },
-  resolve: {
-    extensions: [".tsx", ".ts"],
   },
 });

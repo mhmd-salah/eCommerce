@@ -1,9 +1,11 @@
+import { GridList } from "@components/common";
 import Product from "@components/eCommerce/Product/Product";
+import { Loading } from "@components/feedback";
 import { productsCleanUp } from "@store/categories/categoriesSlice";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { actGetProductsByCatPrefix } from "@store/products/productsSlice";
 import { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 const Products = () => {
@@ -17,21 +19,14 @@ const Products = () => {
     };
   }, [dispatch, params]);
 
-  const productsList =
-    records.length > 0
-      ? records.map((record) => (
-          <Col
-            xs={6}
-            md={3}
-            className="d-flex justify-content-center mb-5 mt-2"
-          >
-            <Product {...record} />
-          </Col>
-        ))
-      : "there are not product";
   return (
     <Container>
-      <Row>{productsList}</Row>
+      <Loading status={loading} error={error}>
+        <GridList
+          records={records}
+          renderItem={(record) => <Product {...record} />}
+        />
+      </Loading>
     </Container>
   );
 };
