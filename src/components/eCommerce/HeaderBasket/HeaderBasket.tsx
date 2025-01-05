@@ -1,11 +1,17 @@
 import Logo from "@assets/svg/cart.svg?react";
 import styles from "./styles.module.css";
+import { useAppSelector } from "@store/hooks";
+import { getCatTotalQuantity } from "@store/cart/cartSlice";
 const { basketContainer, basketQuantity } = styles;
 const HeaderBasket = () => {
-  return <div className={basketContainer}>
-    <Logo title="basket icon"/>
-    <div className={basketQuantity}>0</div>
-  </div>;
+  const totalQuantity = useAppSelector((state) => getCatTotalQuantity(state));
+
+  return (
+    <div className={basketContainer}>
+      <Logo title="basket icon" />
+      <div className={basketQuantity}>{totalQuantity}</div>
+    </div>
+  );
 };
 
 export default HeaderBasket;
