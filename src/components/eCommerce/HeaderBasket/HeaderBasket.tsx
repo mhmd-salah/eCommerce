@@ -4,7 +4,7 @@ import { useAppSelector } from "@store/hooks";
 import { getCatTotalQuantity } from "@store/cart/cartSlice";
 const { basketContainer, basketQuantity } = styles;
 const HeaderBasket = () => {
-  const totalQuantity = useAppSelector((state) => getCatTotalQuantity(state));
+  const totalQuantity = useAppSelector(getCatTotalQuantity);
 
   return (
     <div className={basketContainer}>
