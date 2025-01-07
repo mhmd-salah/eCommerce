@@ -1,6 +1,6 @@
 import { TProduct } from "@customTypes/product";
-import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "..";
+import { createSlice } from "@reduxjs/toolkit";
+import { getCatTotalQuantitySelector } from "./selectors";
 
 interface ICartState {
   items: { [key: number]: number };
@@ -27,17 +27,6 @@ const cartSlice = createSlice({
   },
 });
 
-const getCatTotalQuantity = createSelector(
-  (state: RootState) => state.cart.items,
-  (items) => {
-    return Object.values(items).reduce(
-      (acc: number, quantity: number) => acc + quantity,
-      0
-    );
-  }
-);
-
-
-export { getCatTotalQuantity };
+export { getCatTotalQuantitySelector };
 export const { addToCart } = cartSlice.actions;
 export default cartSlice.reducer;
