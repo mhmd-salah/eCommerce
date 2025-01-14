@@ -3,18 +3,36 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import categories from "./categories/categoriesSlice";
 import products from "./products/productsSlice";
 import cart from "./cart/cartSlice";
-import { persistReducer, persistStore } from "redux-persist";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from "redux-persist";
 
-const rootPersistConfig = {
-  key: "root",
+const cartPersistConfig = {
+  key: "cart",
   storage,
-  whitelist: ["cart"],
+  whitelist: ["items"],
 };
 
-const rootReducer = combineReducers({ categories, products, cart });
-const persistReducers = persistReducer(rootPersistConfig, rootReducer);
+const rootReducer = combineReducers({
+  categories,
+  products,
+  cart: persistReducer(cartPersistConfig, cart),
+});
 const store = configureStore({
-  reducer: persistReducers,
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 const persistor = persistStore(store);

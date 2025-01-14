@@ -27,6 +27,9 @@ const cartSlice = createSlice({
   },
 });
 
+
 export { getCatTotalQuantitySelector };
 export const { addToCart } = cartSlice.actions;
 export default cartSlice.reducer;
+
+// y
