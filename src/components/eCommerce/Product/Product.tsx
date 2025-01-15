@@ -30,7 +30,7 @@ const Product = ({
         <img src={img} alt="" />
       </div>
       <h2>{title}</h2>
-      <h3>{price} EG</h3>
+      <h3>{price.toFixed(2)} EG</h3>
       <p>
         Quantity:{" "}
         {!quantityReachedToMax ? currentRemainingQuantity : "Reached limit"}
