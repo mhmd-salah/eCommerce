@@ -28,7 +28,7 @@ const Products = () => {
     <Container>
       <Loading status={loading} error={error}>
         <GridList
-          records={records}
+          records={productsFullInfo}
           renderItem={(record) => <Product {...record} />}
         />
       </Loading>

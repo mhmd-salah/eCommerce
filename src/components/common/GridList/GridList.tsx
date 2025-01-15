@@ -11,8 +11,8 @@ const GridList = <T extends HasId>({
   renderItem,
 }: GridListProps<T>) => {
   const categoriesList =
-    records.length > 0
-      ? records.map((record) => (
+    records.length > 0  
+      ? records.map((record) => ( 
           <Col
             xs={6}
             md={3}
@@ -27,5 +27,3 @@ const GridList = <T extends HasId>({
 };
 
 export default GridList;
-
-

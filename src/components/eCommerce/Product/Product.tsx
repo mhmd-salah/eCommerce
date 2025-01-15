@@ -3,30 +3,27 @@ import styles from "./styles.module.css";
 import { TProduct } from "@customTypes/product";
 import { useAppDispatch } from "@store/hooks";
 import { addToCart } from "@store/cart/cartSlice";
-import { useEffect, useState } from "react";
+import useDebounce from "@hooks/useDebounce";
+import { memo, useCallback } from "react";
 const { product, productImg } = styles;
 
-const Product = ({ id, title, price, img , max}: Omit<TProduct, "cat_prefix">) => {
+const Product = ({
+  id,
+  title,
+  price,
+  img,
+  max,
+  quantity,
+}: Omit<TProduct, "cat_prefix">) => {
   const dispatch = useAppDispatch();
-  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+  const [isBtnDisabled, setIsBtnDisabled] = useDebounce(false, 300);
+  const currentRemainingQuantity = max - (quantity ?? 0);
+  const quantityReachedToMax = currentRemainingQuantity <= 0 ? true : false;
 
-  useEffect(() => {
-    if (!isBtnDisabled) {
-      return;
-    }
-    setIsBtnDisabled(true);
-
-    const debounce = setTimeout(() => {
-      setIsBtnDisabled(false);
-    }, 300);
-
-    return () => clearTimeout(debounce);
-  }, [isBtnDisabled]);
-
-  const addToCartHandler = () => {
+  const addToCartHandler = useCallback(() => {
     dispatch(addToCart(id));
     setIsBtnDisabled(true);
-  };
+  }, [dispatch, id, setIsBtnDisabled]);
   return (
     <div className={product}>
       <div className={productImg}>
@@ -34,12 +31,15 @@ const Product = ({ id, title, price, img , max}: Omit<TProduct, "cat_prefix">) =
       </div>
       <h2>{title}</h2>
       <h3>{price} EG</h3>
-      <p>Max: {max}</p>
+      <p>
+        Quantity:{" "}
+        {!quantityReachedToMax ? currentRemainingQuantity : "Reached limit"}
+      </p>
       <Button
         variant="info"
         style={{ color: "white" }}
         onClick={addToCartHandler}
-        disabled={isBtnDisabled}
+        disabled={isBtnDisabled || quantityReachedToMax}
       >
         {isBtnDisabled ? (
           <>
@@ -54,4 +54,4 @@ const Product = ({ id, title, price, img , max}: Omit<TProduct, "cat_prefix">) =
   );
 };
 
-export default Product;
+export default memo(Product);
