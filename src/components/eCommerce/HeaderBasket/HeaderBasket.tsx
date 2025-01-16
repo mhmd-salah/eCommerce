@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { useAppSelector } from "@store/hooks";
 import { getCatTotalQuantitySelector } from "@store/cart/cartSlice";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const { basketContainer, basketQuantity, pumpCartQuantity } = styles;
 const HeaderBasket = () => {
   const [isAnimate, setIsAnimate] = useState(false);
@@ -25,8 +26,10 @@ const HeaderBasket = () => {
 
   return (
     <div className={basketContainer}>
-      <Logo title="basket icon" />
-      <div className={quantityStyle}>{totalQuantity}</div>
+      <Link to={"/cart"}>
+        <Logo title="basket icon" />
+        <div className={quantityStyle}>{totalQuantity}</div>
+      </Link>
     </div>
   );
 };

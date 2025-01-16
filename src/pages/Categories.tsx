@@ -5,6 +5,7 @@ import { actGetCategories } from "@store/categories/categoriesSlice";
 import { useEffect } from "react";
 import { Loading } from "@components/feedback";
 import { GridList } from "@components/common";
+import Heading from "@components/common/Heading/Heading";
 
 const Categories = () => {
   const dispatch = useAppDispatch();
@@ -19,6 +20,7 @@ const Categories = () => {
 
   return (
     <Container>
+      <Heading>Categories</Heading>
       <Loading status={loading} error={error}>
         <GridList
           records={records}

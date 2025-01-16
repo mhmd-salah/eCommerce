@@ -1,4 +1,9 @@
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 //layout
 import MainLayout from "@layout/MainLayout/MainLayout";
@@ -10,6 +15,7 @@ import AboutUs from "@pages/AboutUs";
 import Login from "@pages/Login";
 import Register from "@pages/Register";
 import Error from "@pages/Error";
+import Cart from "@pages/Cart";
 
 // const routes = createBrowserRouter(
 //   createRoutesFromElements(
@@ -39,7 +45,7 @@ const routes = createBrowserRouter(
         element={<Products />}
         loader={({ params }) => {
           if (
-            typeof params.prefix !== "string" || 
+            typeof params.prefix !== "string" ||
             !/^[a-z]+$/i.test(params.prefix)
           ) {
             throw new Response("bad requests", {
@@ -50,6 +56,7 @@ const routes = createBrowserRouter(
           return true;
         }}
       />
+      <Route path="cart" element={<Cart />} />
       <Route path="about-us" element={<AboutUs />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
@@ -61,4 +68,3 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
-

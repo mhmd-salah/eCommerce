@@ -2,9 +2,10 @@ import { Button, Spinner } from "react-bootstrap";
 import styles from "./styles.module.css";
 import { TProduct } from "@customTypes/product";
 import { useAppDispatch } from "@store/hooks";
-import { addToCart } from "@store/cart/cartSlice";
 import useDebounce from "@hooks/useDebounce";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useRef } from "react";
+import { AddToCartCommand } from "src/shared/commands/AddToCartCommand";
+import { ButtonInvoker } from "src/shared/commands/ButtonInvoker";
 const { product, productImg } = styles;
 
 const Product = ({
@@ -18,12 +19,21 @@ const Product = ({
   const dispatch = useAppDispatch();
   const [isBtnDisabled, setIsBtnDisabled] = useDebounce(false, 300);
   const currentRemainingQuantity = max - (quantity ?? 0);
-  const quantityReachedToMax = currentRemainingQuantity <= 0 ? true : false;
+  const quantityReachedToMax = currentRemainingQuantity <= 0;
+
+  const invokerRef = useRef<ButtonInvoker | null>(null);
+
+  if (!invokerRef.current) {
+    invokerRef.current = new ButtonInvoker();
+    const addToCartCommand = new AddToCartCommand(dispatch, id);
+    invokerRef.current.setCommands("addProduct", addToCartCommand);
+  }
 
   const addToCartHandler = useCallback(() => {
-    dispatch(addToCart(id));
+    invokerRef.current?.pressButton("addProduct");
     setIsBtnDisabled(true);
-  }, [dispatch, id, setIsBtnDisabled]);
+  }, [setIsBtnDisabled]);
+
   return (
     <div className={product}>
       <div className={productImg}>
