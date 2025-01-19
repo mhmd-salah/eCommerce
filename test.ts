@@ -35,7 +35,7 @@ class CartInvoker {
   undo(): void {
     const command = this.history.pop();
     if (command) {
-      console.log("undoing the last command");
+      console.log('undoing the last command');
     }
   }
 }
@@ -44,8 +44,9 @@ const cart = [];
 
 const invoker = new CartInvoker();
 
-const addToCart = new AddToCartCommand("item 1", cart);
+const addToCart = new AddToCartCommand('item 1', cart);
 invoker.executeCommand(addToCart);
 
-const removedCart = new RemoveItemFromCart("item 1", cart);
+const removedCart = new RemoveItemFromCart('item 1', cart);
 invoker.executeCommand(removedCart);
+

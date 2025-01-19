@@ -1,5 +1,5 @@
-import { addToCart } from "@store/cart/cartSlice";
-import { AppDispatch } from "@store/index";
+import { addToCart } from '@store/cart/cartSlice';
+import { AppDispatch } from '@store/index';
 
 export interface Command {
   execute(): void;
@@ -17,5 +17,3 @@ export class AddToCartCommand implements Command {
     this.dispatch(addToCart(this.productId));
   }
 }
-
-

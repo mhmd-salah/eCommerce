@@ -4,8 +4,8 @@ import { TProduct } from "@customTypes/product";
 import { useAppDispatch } from "@store/hooks";
 import useDebounce from "@hooks/useDebounce";
 import { memo, useCallback, useRef } from "react";
-import { AddToCartCommand } from "src/shared/commands/AddToCartCommand";
-import { ButtonInvoker } from "src/shared/commands/ButtonInvoker";
+import { AddToCartCommand } from "src/commands/AddToCartCommand";
+import { ButtonInvoker } from "src/commands/ButtonInvoker";
 const { product, productImg } = styles;
 
 const Product = ({
