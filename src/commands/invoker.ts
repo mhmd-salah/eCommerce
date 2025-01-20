@@ -1,6 +1,6 @@
-import { Command } from "./AddToCartCommand";
+import { Command } from './AddToCartCommand';
 
-export class ButtonInvoker {
+export class Invoker {
   private commands: { [key: string]: Command } = {};
 
   setCommands(buttonId: string, command: Command) {
