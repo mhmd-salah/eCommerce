@@ -1,22 +1,25 @@
 import Heading from '@components/common/Heading/Heading';
 import { CartItem, CartSubtotalPrice } from '@components/eCommerce';
+import { Loading } from '@components/feedback';
 import { actGetProductsByItems } from '@store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { useEffect } from 'react';
 
 const Cart = () => {
-  const dispatch = useAppDispatch()
-  const {items} = useAppSelector(state=>state.cart)
+  const dispatch = useAppDispatch();
+  const { items, loading, error } = useAppSelector((state) => state.cart);
   useEffect(() => {
-    dispatch(actGetProductsByItems())
+    dispatch(actGetProductsByItems());
   }, [dispatch]);
   return (
     <div>
-      <Heading>Cart</Heading>
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartSubtotalPrice />
+      <Loading status={loading} error={error}>
+        <Heading>Cart</Heading>
+        <CartItem />
+        <CartItem />
+        <CartItem />
+        <CartSubtotalPrice />
+      </Loading>
     </div>
   );
 };
