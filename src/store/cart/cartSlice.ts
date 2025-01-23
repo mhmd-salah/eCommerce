@@ -39,6 +39,7 @@ const cartSlice = createSlice({
 
     builder.addCase(actGetProductsByItems.fulfilled, (state, action) => {
       state.loading = 'success';
+      console.log(action.payload)
       state.productsFullInfo = action.payload ?? [];
     });
 

@@ -16,6 +16,7 @@ const actGetProductsByCatPrefix = createAsyncThunk(
         },
       });
       const data = response.data;
+      console.log("data from act",data)
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

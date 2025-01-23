@@ -18,6 +18,7 @@ const Products = () => {
     ...el,
     quantity: cartItems[el.id] || 0,
   }));
+  console.log(productsFullInfo); 
   useEffect(() => {
     dispatch(actGetProductsByCatPrefix(params.prefix as string));
     return () => {
