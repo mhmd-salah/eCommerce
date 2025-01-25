@@ -87,7 +87,16 @@
 // 4
 // 5
 
+const req = new Request('https://jsonplaceholder.typicode.com/posts/1', {
+  method: 'GET',
+  cache: 'no-store',
+});
 
-
-
-
+fetch(req)
+  .then((res) => {
+    console.log(req.url);
+    console.log(req.method);
+    return res.json();
+  })
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
