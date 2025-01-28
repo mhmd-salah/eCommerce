@@ -30,6 +30,9 @@ const cartSlice = createSlice({
         state.items[id] = 1;
       }
     },
+    cartItemChangeQuantity: (state, action) => {
+      state.items[action.payload.id] = action.payload.quantity;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(actGetProductsByItems.pending, (state) => {
@@ -39,7 +42,7 @@ const cartSlice = createSlice({
 
     builder.addCase(actGetProductsByItems.fulfilled, (state, action) => {
       state.loading = 'success';
-      console.log(action.payload)
+      console.log(action.payload);
       state.productsFullInfo = action.payload ?? [];
     });
 
@@ -53,7 +56,7 @@ const cartSlice = createSlice({
 });
 
 export { getCatTotalQuantitySelector, actGetProductsByItems };
-export const { addToCart } = cartSlice.actions;
+export const { addToCart ,cartItemChangeQuantity} = cartSlice.actions;
 export default cartSlice.reducer;
 
 // y

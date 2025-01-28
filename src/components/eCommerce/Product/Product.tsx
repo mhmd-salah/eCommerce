@@ -32,6 +32,7 @@ const Product = ({
   const addToCartHandler = useCallback(() => {
     invokerRef.current?.pressButton('addProduct');
     setIsBtnDisabled(true);
+    console.log("added")
   }, [setIsBtnDisabled]);
 
   return (
