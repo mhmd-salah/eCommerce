@@ -8,6 +8,7 @@ const { cartItem, product, productImg, productInfo, cartItemSelection } =
 
 type cartItemsProps = TProduct & {
   changeQuantityHandler: (id: number, quantity: number) => void;
+  removeItemHandler: (id: number) => void;
 };
 const CartItem = ({
   id,
@@ -17,6 +18,7 @@ const CartItem = ({
   max,
   quantity,
   changeQuantityHandler,
+  removeItemHandler,
 }: cartItemsProps) => {
   const renderOptions = Array(max)
     .fill(0)
@@ -32,6 +34,7 @@ const CartItem = ({
     const quantity = event.target.value;
     changeQuantityHandler(id, +quantity);
   };
+
   return (
     <div className={cartItem}>
       <div className={product}>
@@ -45,6 +48,7 @@ const CartItem = ({
             variant="secondary"
             style={{ color: 'white', width: '100px' }}
             className="mt-auto"
+            onClick={() => removeItemHandler(id)}
           >
             Remove
           </Button>

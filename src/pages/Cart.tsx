@@ -4,12 +4,14 @@ import { Loading } from '@components/feedback';
 import {
   actGetProductsByItems,
   cartItemChangeQuantity,
+  cartItemRemove,
 } from '@store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 const Cart = () => {
   const dispatch = useAppDispatch();
+
   const { items, productsFullInfo, loading, error } = useAppSelector(
     (state) => state.cart
   );
@@ -21,20 +23,37 @@ const Cart = () => {
     ...el,
     quantity: items[el.id],
   }));
+  console.log(productsFullInfo, 'dsf');
+  const changeQuantityHandler = useCallback(
+    (id: number, quantity: number) => {
+      dispatch(cartItemChangeQuantity({ id, quantity }));
+    },
+    [dispatch]
+  );
 
-  const changeQuantityHandler = (id: number, quantity: number) => {
-    dispatch(cartItemChangeQuantity({ id, quantity }));
-  };
+  const removeItemHandler = useCallback(
+    (id: number) => {
+      dispatch(cartItemRemove(id));
+    },
+    [dispatch]
+  );
 
   return (
     <div>
       <Loading status={loading} error={error}>
         <Heading>Cart</Heading>
-        <CartItemList
-          products={products}
-          changeQuantityHandler={changeQuantityHandler}
-        />
-        <CartSubtotalPrice />
+        {products.length ? (
+          <>
+            <CartItemList
+              products={products}
+              changeQuantityHandler={changeQuantityHandler}
+              removeItemHandler={removeItemHandler}
+            />
+            <CartSubtotalPrice products={products} />
+          </>
+        ) : (
+          'your cart is empty'
+        )}
       </Loading>
     </div>
   );
