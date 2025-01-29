@@ -1,10 +1,11 @@
-import { Button, Spinner } from "react-bootstrap";
-import styles from "./styles.module.css";
-import { TProduct } from "@customTypes/product";
-import { useAppDispatch } from "@store/hooks";
-import { addToCart } from "@store/cart/cartSlice";
-import useDebounce from "@hooks/useDebounce";
-import { memo, useCallback } from "react";
+import { Button, Spinner } from 'react-bootstrap';
+import styles from './styles.module.css';
+import { TProduct } from '@customTypes/product';
+import { useAppDispatch } from '@store/hooks';
+import useDebounce from '@hooks/useDebounce';
+import { memo, useCallback, useRef } from 'react';
+import { AddToCartCommand } from 'src/commands/AddToCartCommand';
+import { Invoker } from 'src/commands/invoker';
 const { product, productImg } = styles;
 
 const Product = ({
@@ -14,16 +15,26 @@ const Product = ({
   img,
   max,
   quantity,
-}: Omit<TProduct, "cat_prefix">) => {
+}: Omit<TProduct, 'cat_prefix'>) => {
   const dispatch = useAppDispatch();
   const [isBtnDisabled, setIsBtnDisabled] = useDebounce(false, 300);
   const currentRemainingQuantity = max - (quantity ?? 0);
-  const quantityReachedToMax = currentRemainingQuantity <= 0 ? true : false;
+  const quantityReachedToMax = currentRemainingQuantity <= 0;
+
+  const invokerRef = useRef<Invoker | null>(null);
+
+  if (!invokerRef.current) {
+    invokerRef.current = new Invoker();
+    const addToCartCommand = new AddToCartCommand(dispatch, id);
+    invokerRef.current.setCommands('addProduct', addToCartCommand);
+  }
 
   const addToCartHandler = useCallback(() => {
-    dispatch(addToCart(id));
+    invokerRef.current?.pressButton('addProduct');
     setIsBtnDisabled(true);
-  }, [dispatch, id, setIsBtnDisabled]);
+    console.log("added")
+  }, [setIsBtnDisabled]);
+
   return (
     <div className={product}>
       <div className={productImg}>
@@ -32,12 +43,12 @@ const Product = ({
       <h2>{title}</h2>
       <h3>{price.toFixed(2)} EG</h3>
       <p>
-        Quantity:{" "}
-        {!quantityReachedToMax ? currentRemainingQuantity : "Reached limit"}
+        Quantity:{' '}
+        {!quantityReachedToMax ? currentRemainingQuantity : 'Reached limit'}
       </p>
       <Button
         variant="info"
-        style={{ color: "white" }}
+        style={{ color: 'white' }}
         onClick={addToCartHandler}
         disabled={isBtnDisabled || quantityReachedToMax}
       >
@@ -47,7 +58,7 @@ const Product = ({
             <Spinner animation="border" size="sm" />
           </>
         ) : (
-          "Add to cart"
+          'Add to cart'
         )}
       </Button>
     </div>

@@ -1,9 +1,11 @@
-import Category from "@components/eCommerce/Category/Category";
+import { Container } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { actGetCategories } from "@store/categories/categoriesSlice";
 import { useEffect } from "react";
 import { Loading } from "@components/feedback";
-import { GridList, Heading } from "@components/common";
+import { GridList } from "@components/common";
+import Heading from "@components/common/Heading/Heading";
+import Category from "@components/eCommerce/category/Category";
 
 const Categories = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +19,7 @@ const Categories = () => {
   }, [dispatch, records]);
 
   return (
-    <>
+    <Container>
       <Heading>Categories</Heading>
       <Loading status={loading} error={error}>
         <GridList
@@ -25,7 +27,7 @@ const Categories = () => {
           renderItem={(record) => <Category {...record} />}
         />
       </Loading>
-    </>
+    </Container>
   );
 };
 

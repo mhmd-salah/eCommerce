@@ -1,8 +1,8 @@
-import storage from "redux-persist/lib/storage";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import categories from "./categories/categoriesSlice";
-import products from "./products/productsSlice";
-import cart from "./cart/cartSlice";
+import storage from 'redux-persist/lib/storage';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import categories from './categories/categoriesSlice';
+import products from './products/productsSlice';
+import cart from './cart/cartSlice';
 import {
   FLUSH,
   PAUSE,
@@ -12,12 +12,12 @@ import {
   PURGE,
   REGISTER,
   REHYDRATE,
-} from "redux-persist";
+} from 'redux-persist';
 
 const cartPersistConfig = {
-  key: "cart",
+  key: 'cart',
   storage,
-  whitelist: ["items"],
+  whitelist: ['items'],
 };
 
 const rootReducer = combineReducers({
