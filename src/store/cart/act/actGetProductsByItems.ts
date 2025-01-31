@@ -4,8 +4,6 @@ import { RootState } from '@store/index';
 import axios from 'axios';
 import axiosInstance from 'src/api/axios.config';
 
-
-
 type TResponse = TProduct[];
 
 const actGetProductsByItems = createAsyncThunk(
@@ -18,7 +16,6 @@ const actGetProductsByItems = createAsyncThunk(
     if (!itemsId.length) {
       return fulfillWithValue([]);
     }
-
     try {
       const concatenatedItemsId = itemsId.map((el) => `id=${el}`).join('&');
       const response = await axiosInstance.get<TResponse>(

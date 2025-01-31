@@ -6,7 +6,10 @@ import useDebounce from '@hooks/useDebounce';
 import { memo, useCallback, useRef } from 'react';
 import { AddToCartCommand } from 'src/commands/AddToCartCommand';
 import { Invoker } from 'src/commands/invoker';
-const { product, productImg } = styles;
+import Like from '@assets/svg/love-outline.svg?react';
+import LikeFill from '@assets/svg/love.svg?react';
+
+const { product, productImg, wishlistBtn } = styles;
 
 const Product = ({
   id,
@@ -32,11 +35,14 @@ const Product = ({
   const addToCartHandler = useCallback(() => {
     invokerRef.current?.pressButton('addProduct');
     setIsBtnDisabled(true);
-    console.log("added")
+    console.log('added');
   }, [setIsBtnDisabled]);
 
   return (
     <div className={product}>
+      <div className={wishlistBtn}>
+        <Like />
+      </div>
       <div className={productImg}>
         <img src={img} alt="" />
       </div>
