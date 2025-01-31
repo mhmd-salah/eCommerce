@@ -1,5 +1,4 @@
-import { GridList } from '@components/common';
-import Heading from '@components/common/Heading/Heading';
+import { GridList, Heading } from '@components/common';
 import Product from '@components/eCommerce/Product/Product';
 import { Loading } from '@components/feedback';
 import { productsCleanUp } from '@store/categories/categoriesSlice';

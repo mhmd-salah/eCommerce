@@ -1,4 +1,4 @@
-import Heading from '@components/common/Heading/Heading';
+import { Heading } from '@components/common';
 import { CartItemList, CartSubtotalPrice } from '@components/eCommerce';
 import { Loading } from '@components/feedback';
 import {
@@ -35,7 +35,7 @@ const Cart = () => {
     (id: number) => {
       dispatch(cartItemRemove(id));
     },
-    [dispatch]
+    [dispatch] 
   );
 
   return (

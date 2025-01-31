@@ -4,30 +4,32 @@ import { RootState } from '@store/index';
 import axios from 'axios';
 import axiosInstance from 'src/api/axios.config';
 
+
+
 type TResponse = TProduct[];
 
 const actGetProductsByItems = createAsyncThunk(
   'cart/actGetProductsByItems',
-  async (_, thunkApi) => {
-    const { rejectWithValue, getState, fulfillWithValue } = thunkApi;
+  async (_, thunkAPI) => {
+    const { rejectWithValue, fulfillWithValue, getState } = thunkAPI;
     const { cart } = getState() as RootState;
-    
     const itemsId = Object.keys(cart.items);
 
     if (!itemsId.length) {
       return fulfillWithValue([]);
     }
+
     try {
       const concatenatedItemsId = itemsId.map((el) => `id=${el}`).join('&');
       const response = await axiosInstance.get<TResponse>(
         `/products?${concatenatedItemsId}`
       );
       return response.data;
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        return rejectWithValue(err.response?.data.message || err.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(error.response?.data.message || error.message);
       } else {
-        rejectWithValue('An unexpected error');
+        return rejectWithValue('An unexpected error');
       }
     }
   }

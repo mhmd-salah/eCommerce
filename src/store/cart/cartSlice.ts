@@ -62,7 +62,7 @@ const cartSlice = createSlice({
 });
 
 export { getCatTotalQuantitySelector, actGetProductsByItems };
-export const { addToCart, cartItemChangeQuantity,cartItemRemove } = cartSlice.actions;
+export const { addToCart, cartItemChangeQuantity, cartItemRemove } =
+  cartSlice.actions;
 export default cartSlice.reducer;
 
-// y
