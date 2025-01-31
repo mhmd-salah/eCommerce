@@ -3,8 +3,7 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { actGetCategories } from "@store/categories/categoriesSlice";
 import { useEffect } from "react";
 import { Loading } from "@components/feedback";
-import { GridList } from "@components/common";
-import Heading from "@components/common/Heading/Heading";
+import { GridList, Heading } from "@components/common";
 import Category from "@components/eCommerce/category/Category";
 
 const Categories = () => {
