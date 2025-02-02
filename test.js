@@ -100,13 +100,15 @@
 //   })
 //   .then((data) => console.log(data))
 //   .catch((err) => console.log(err));
+// ------------------
+// if (~[1, 2, 3].indexOf(23)) {
+//   console.log(true);
+// } else {
+//   console.log(false);
+// }
 
-if (~[1, 2, 3].indexOf(23)) {
-  console.log(true);
-} else {
-  console.log(false);
-}
+// let arr = [1, 2, 3, 4, 5];
 
-let arr = [1, 2, 3, 4, 5];
+// console.log(~arr.indexOf(1));
+// ------------------
 
-console.log(~arr.indexOf(1));

@@ -3,6 +3,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import categories from './categories/categoriesSlice';
 import products from './products/productsSlice';
 import cart from './cart/cartSlice';
+import wishlist from "./wishlist/wishlistSlice"
 import {
   FLUSH,
   PAUSE,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   categories,
   products,
   cart: persistReducer(cartPersistConfig, cart),
+  wishlist
 });
 const store = configureStore({
   reducer: rootReducer,
