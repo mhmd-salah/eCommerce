@@ -7,7 +7,7 @@ import { memo, useCallback, useRef } from 'react';
 import { AddToCartCommand } from 'src/commands/AddToCartCommand';
 import { Invoker } from 'src/commands/invoker';
 import Like from '@assets/svg/love-outline.svg?react';
-import LikeFill from '@assets/svg/love.svg?react';
+import { actLikeToggle } from '@store/wishlist/wishlistSlice';
 
 const { product, productImg, wishlistBtn } = styles;
 
@@ -38,9 +38,12 @@ const Product = ({
     console.log('added');
   }, [setIsBtnDisabled]);
 
+  const likeToggleHandler = () => {
+    dispatch(actLikeToggle(id));
+  };
   return (
     <div className={product}>
-      <div className={wishlistBtn}>
+      <div className={wishlistBtn} onClick={likeToggleHandler}>
         <Like />
       </div>
       <div className={productImg}>

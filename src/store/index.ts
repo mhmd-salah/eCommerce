@@ -25,6 +25,7 @@ const rootReducer = combineReducers({
   categories,
   products,
   cart: persistReducer(cartPersistConfig, cart),
+  
   wishlist
 });
 const store = configureStore({
