@@ -13,7 +13,7 @@ import {
   PURGE,
   REGISTER,
   REHYDRATE,
-} from 'redux-persist';
+} from 'redux-persist'; 
 
 const cartPersistConfig = {
   key: 'cart',

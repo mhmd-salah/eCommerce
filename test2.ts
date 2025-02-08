@@ -1,11 +1,19 @@
-class Database {
-  connect(){
-    console.log('connecting to the database')
-  }
+// class Database {
+//   connect(){
+//     console.log('connecting to the database')
+//   }
+// }
+
+// class UserServices {
+//   private  database:Database;
+
+//   constructor()
+// }
+
+type ReturnTypeInfer<T> = T extends (...args: any[]) => infer R ? R : never;
+
+function getName() {
+  return 'mohamed';
 }
 
-class UserServices {
-  private  database:Database;
-
-  constructor()
-}
+type NameType = ReturnTypeInfer<typeof getName>;
