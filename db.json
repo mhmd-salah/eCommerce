@@ -97,11 +97,5 @@
       "max": 4
     }
   ],
-  "wishlist": [
-    {
-      "id": "f67a",
-      "userId": "1",
-      "productId": "3"
-    }
-  ]
+  "wishlist": []
 }

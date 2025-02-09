@@ -42,7 +42,9 @@ const Product = ({
   }, [setIsBtnDisabled]);
 
   const likeToggleHandler = () => {
+    if (isLoading) return;
     setIsLoading(true);
+
     dispatch(actLikeToggle(id))
       .unwrap()
       .then(() => setIsLoading(false))
