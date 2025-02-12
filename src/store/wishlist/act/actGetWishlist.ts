@@ -1,5 +1,5 @@
 import { TProduct } from '@customTypes/product';
-import { createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import axiosInstance from 'src/api/axios.config';
 

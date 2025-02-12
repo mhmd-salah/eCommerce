@@ -3,6 +3,7 @@ import { CartItemList, CartSubtotalPrice } from '@components/eCommerce';
 import { Loading } from '@components/feedback';
 import {
   actGetProductsByItems,
+  cartCleanUp,
   cartItemChangeQuantity,
   cartItemRemove,
 } from '@store/cart/cartSlice';
@@ -17,6 +18,9 @@ const Cart = () => {
   );
   useEffect(() => {
     dispatch(actGetProductsByItems());
+    return () => {
+      dispatch(cartCleanUp());
+    };
   }, [dispatch]);
 
   const products = productsFullInfo.map((el) => ({
@@ -35,7 +39,7 @@ const Cart = () => {
     (id: number) => {
       dispatch(cartItemRemove(id));
     },
-    [dispatch] 
+    [dispatch]
   );
 
   return (
