@@ -3,10 +3,14 @@ import styles from './styles.module.css';
 import { TProduct } from '@customTypes/product';
 import { useAppDispatch } from '@store/hooks';
 import useDebounce from '@hooks/useDebounce';
-import { memo, useCallback, useRef } from 'react';
+import { memo, useCallback, useRef, useState } from 'react';
 import { AddToCartCommand } from 'src/commands/AddToCartCommand';
 import { Invoker } from 'src/commands/invoker';
-const { product, productImg } = styles;
+import Like from '@assets/svg/love-outline.svg?react';
+import LikeFill from '@assets/svg/love.svg?react';
+import { actLikeToggle } from '@store/wishlist/wishlistSlice';
+
+const { product, productImg, wishlistBtn } = styles;
 
 const Product = ({
   id,
@@ -15,7 +19,9 @@ const Product = ({
   img,
   max,
   quantity,
+  isLiked,
 }: Omit<TProduct, 'cat_prefix'>) => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const [isBtnDisabled, setIsBtnDisabled] = useDebounce(false, 300);
   const currentRemainingQuantity = max - (quantity ?? 0);
@@ -32,11 +38,29 @@ const Product = ({
   const addToCartHandler = useCallback(() => {
     invokerRef.current?.pressButton('addProduct');
     setIsBtnDisabled(true);
-    console.log("added")
+    console.log('added');
   }, [setIsBtnDisabled]);
 
+  const likeToggleHandler = () => {
+    if (isLoading) return;
+    setIsLoading(true);
+
+    dispatch(actLikeToggle(id))
+      .unwrap()
+      .then(() => setIsLoading(false))
+      .catch(() => setIsLoading(false));
+  };
   return (
     <div className={product}>
+      <div className={wishlistBtn} onClick={likeToggleHandler}>
+        {isLoading ? (
+          <Spinner animation="border" size="sm" variant="primary" />
+        ) : isLiked ? (
+          <LikeFill />
+        ) : (
+          <Like />
+        )}
+      </div>
       <div className={productImg}>
         <img src={img} alt="" />
       </div>

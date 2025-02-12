@@ -14,9 +14,12 @@ const Products = () => {
   const { loading, records, error } = useAppSelector((state) => state.products);
 
   const cartItems = useAppSelector((state) => state.cart.items);
+  const wishlistItemsId = useAppSelector((state) => state.wishlist.itemsId);
+
   const productsFullInfo = records.map((el) => ({
     ...el,
     quantity: cartItems[el.id] || 0,
+    isLiked: wishlistItemsId.includes(el.id),
   }));
   console.log('product full', productsFullInfo);
   useEffect(() => {

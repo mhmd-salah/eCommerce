@@ -3,19 +3,20 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
-} from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 //layout
-import MainLayout from "@layout/MainLayout/MainLayout";
+import MainLayout from '@layout/MainLayout/MainLayout';
 //pages
-import Home from "@pages/Home";
-import Products from "@pages/Products";
-import Categories from "@pages/Categories";
-import AboutUs from "@pages/AboutUs";
-import Login from "@pages/Login";
-import Register from "@pages/Register";
-import Error from "@pages/Error";
-import Cart from "@pages/Cart";
+import Home from '@pages/Home';
+import Error from '@pages/Error';
+import Categories from '@pages/Categories';
+import Products from '@pages/Products';
+import Cart from '@pages/Cart';
+import AboutUs from '@pages/AboutUs';
+import Register from '@pages/Register';
+import Login from '@pages/Login';
+import Wishlist from '@pages/Wishlist';
 
 // const routes = createBrowserRouter(
 //   createRoutesFromElements(
@@ -45,11 +46,11 @@ const routes = createBrowserRouter(
         element={<Products />}
         loader={({ params }) => {
           if (
-            typeof params.prefix !== "string" ||
+            typeof params.prefix !== 'string' ||
             !/^[a-z]+$/i.test(params.prefix)
           ) {
-            throw new Response("bad requests", {
-              statusText: "category not found",
+            throw new Response('bad requests', {
+              statusText: 'category not found',
               status: 400,
             });
           }
@@ -57,6 +58,7 @@ const routes = createBrowserRouter(
         }}
       />
       <Route path="cart" element={<Cart />} />
+      <Route path="wishlist" element={<Wishlist />} />
       <Route path="about-us" element={<AboutUs />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />

@@ -1,4 +1,4 @@
-import { HeaderBasket } from '../../eCommerce';
+import { HeaderBasket, HeaderWishlist } from '../../eCommerce';
 import { Badge, Container, Nav, Navbar } from 'react-bootstrap';
 import styles from './styles.module.css';
 import { NavLink } from 'react-router-dom';
@@ -12,7 +12,10 @@ const Header = () => {
             <span>our</span> <Badge bg="info">Ecommerce</Badge>
           </h1>
 
-          <HeaderBasket />
+          <div className='d-flex '>
+            <HeaderWishlist />
+            <HeaderBasket />
+          </div>
         </div>
 
         <Navbar
