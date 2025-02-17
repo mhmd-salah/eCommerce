@@ -3,9 +3,9 @@ import { CartItemList, CartSubtotalPrice } from '@components/eCommerce';
 import { Loading } from '@components/feedback';
 import {
   actGetProductsByItems,
-  cartCleanUp,
   cartItemChangeQuantity,
   cartItemRemove,
+  cleanCartProductsFullInfo,
 } from '@store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { useCallback, useEffect } from 'react';
@@ -19,7 +19,7 @@ const Cart = () => {
   useEffect(() => {
     dispatch(actGetProductsByItems());
     return () => {
-      dispatch(cartCleanUp());
+      dispatch(cleanCartProductsFullInfo());
     };
   }, [dispatch]);
 

@@ -1,9 +1,8 @@
 import { GridList, Heading } from '@components/common';
 import Product from '@components/eCommerce/Product/Product';
 import { Loading } from '@components/feedback';
-import { productsCleanUp } from '@store/categories/categoriesSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { actGetProductsByCatPrefix } from '@store/products/productsSlice';
+import { actGetProductsByCatPrefix, cleanUpProductsRecords } from '@store/products/productsSlice';
 import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
@@ -25,7 +24,7 @@ const Products = () => {
   useEffect(() => {
     dispatch(actGetProductsByCatPrefix(params.prefix as string));
     return () => {
-      dispatch(productsCleanUp());
+      dispatch(cleanUpProductsRecords());
     };
   }, [dispatch, params]);
 

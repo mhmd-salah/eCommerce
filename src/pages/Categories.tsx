@@ -1,10 +1,13 @@
-import { Container } from "react-bootstrap";
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-import { actGetCategories } from "@store/categories/categoriesSlice";
-import { useEffect } from "react";
-import { Loading } from "@components/feedback";
-import { GridList, Heading } from "@components/common";
-import Category from "@components/eCommerce/category/Category";
+import { Container } from 'react-bootstrap';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
+import {
+  actGetCategories,
+  categoriesRecordsCleanUp,
+} from '@store/categories/categoriesSlice';
+import { useEffect } from 'react';
+import { Loading } from '@components/feedback';
+import { GridList, Heading } from '@components/common';
+import Category from '@components/eCommerce/category/Category';
 
 const Categories = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +18,9 @@ const Categories = () => {
     if (!records.length) {
       dispatch(actGetCategories());
     }
+    return () => {
+      dispatch(categoriesRecordsCleanUp());
+    };
   }, [dispatch, records]);
 
   return (
