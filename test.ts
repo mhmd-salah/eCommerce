@@ -50,4 +50,19 @@ invoker.executeCommand(addToCart);
 const removedCart = new RemoveItemFromCart('item 1', cart);
 invoker.executeCommand(removedCart);
 
+// class Node<T> {
+//   data: T;
+//   next: Node<T> | null;
 
+//   constructor(data: T) {
+//     this.data = data;
+//     this.next = null;
+//   }
+// }
+
+// class LinkedList<T> {
+//   head: Node<T> | null;
+//   constructor() {
+//     this.head = null;
+//   }
+// }

@@ -11,7 +11,6 @@ const Products = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
   const { loading, records, error } = useAppSelector((state) => state.products);
-
   const cartItems = useAppSelector((state) => state.cart.items);
   const wishlistItemsId = useAppSelector((state) => state.wishlist.itemsId);
 

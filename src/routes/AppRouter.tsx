@@ -36,6 +36,7 @@ import Wishlist from '@pages/Wishlist';
 //     </>
 //   )
 // );
+
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />} errorElement={<Error />}>
