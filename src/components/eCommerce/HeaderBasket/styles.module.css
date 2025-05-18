@@ -6,11 +6,13 @@
 
 .basketQuantity {
   background-color: #0dcafe;
+  font-weight:bold;
+  color: white;
   height: 22px;
   width: 22px;
   border-radius: 10px;
   text-align: center;
-  border: 1px solid;
+  border: 1px solid black;
   position: absolute;
   top: -16px;
   right: -5px;

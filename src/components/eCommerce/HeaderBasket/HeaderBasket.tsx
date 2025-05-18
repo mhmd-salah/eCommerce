@@ -1,12 +1,13 @@
-// import styles from "./styles.module.css";
+import styles from "./styles.module.css";
 
-// import Logo from "../../../assets/svg/cart.svg?react";
+import Logo from "../../../assets/svg/cart.svg?react";
 
-// const { basketContainer, basketQuantity } = styles;
+const { basketContainer, basketQuantity } = styles;
 const HeaderBasket = () => {
   return (
-    <div>
-      header basket 
+    <div className={basketContainer}>
+      <Logo title="basket icon " />
+      <div className={basketQuantity}>0</div>
     </div>
   );
 };
