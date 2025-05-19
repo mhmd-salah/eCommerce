@@ -23,9 +23,18 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
+    "baseUrl": ".",
     "paths": {
-      "@component/*": ["./src/components"],
-      "@layout/*": ["./src/layout"],
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/": ["./src/hooks/index.ts"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@store/*": ["./src/store/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@layout": ["./src/layout/index.ts"],
+      "@services/*": ["./src/services"]
     }
   },
   "include": ["src", "global.d.ts"]
