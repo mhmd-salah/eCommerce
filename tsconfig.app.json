@@ -23,12 +23,13 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
+    // paths
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
       "@hooks/": ["./src/hooks/index.ts"],
-      "@pages/*": ["./src/pages/*"],
+      "@pages": ["./src/pages/index.ts"],
       "@styles/*": ["./src/styles/*"],
       "@routes/*": ["./src/routes/*"],
       "@store/*": ["./src/store/*"],
@@ -37,5 +38,6 @@
       "@services/*": ["./src/services"]
     }
   },
-  "include": ["src", "global.d.ts"]
+  "include": ["src", "global.d.ts"],
+  
 }
