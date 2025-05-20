@@ -1,5 +1,5 @@
 import { MainLayout } from "@layout";
-import { Categories, Home, Products } from "@pages";
+import { AboutUs, Categories, Home, Products } from "@pages";
 
 import {
   createBrowserRouter,
@@ -14,6 +14,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="products:prefix" element={<Products />} />
       <Route path="categories" element={<Categories />} />
+      <Route path="about" element={<AboutUs />} />
     </Route>
   )
 );
