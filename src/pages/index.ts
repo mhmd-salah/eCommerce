@@ -5,3 +5,6 @@ export { default as Categories } from "./Categories";
 // authentication
 export { default as Login } from "./Login";
 export { default as Register } from "./Register";
+
+// Error
+export { default as Error } from "./Error";
