@@ -12,7 +12,22 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />} errorElement={<Error />}>
       <Route index element={<Home />} />
-      <Route path="products:prefix" element={<Products />} />
+      <Route
+        path="products/:prefix"
+        element={<Products />}
+        loader={({ params }) => {
+          if (
+            typeof params.prefix !== "string" ||
+            !/^[a-z]+$/i.test(params.prefix)
+          ) {
+            throw new Response("Bas Request", {
+              status: 400,
+              statusText: "Category not found",
+            });
+          }
+          return true;
+        }}
+      />
       <Route path="categories" element={<Categories />} />
       <Route path="about" element={<AboutUs />} />
     </Route>
@@ -24,3 +39,5 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
+
+// 21-5-2025
