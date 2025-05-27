@@ -27,6 +27,7 @@
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["./src/assets/*"],
+      "@api": ["./src/api/index.ts"],
       "@components/*": ["./src/components/*"],
       "@hooks/": ["./src/hooks/index.ts"],
       "@pages": ["./src/pages/index.ts"],
@@ -38,6 +39,5 @@
       "@services/*": ["./src/services"]
     }
   },
-  "include": ["src", "global.d.ts"],
-  
+  "include": ["src", "global.d.ts"]
 }
