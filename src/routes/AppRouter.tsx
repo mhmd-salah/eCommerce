@@ -25,7 +25,7 @@ const router = createBrowserRouter(
               statusText: "Category not found",
             });
           }
-          return true;  
+          return true;
         }}
       />
       <Route path="categories" element={<Categories />} />
