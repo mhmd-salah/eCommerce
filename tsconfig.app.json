@@ -32,6 +32,7 @@
       "@hooks/": ["./src/hooks/index.ts"],
       "@pages": ["./src/pages/index.ts"],
       "@styles/*": ["./src/styles/*"],
+      "@customTypes": ["./src/types/index.ts"],
       "@routes/*": ["./src/routes/*"],
       "@store/*": ["./src/store/*"],
       "@utils/*": ["./src/utils/*"],
