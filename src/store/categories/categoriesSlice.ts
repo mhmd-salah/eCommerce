@@ -22,13 +22,16 @@ const categoriesSlice = createSlice({
       .addCase(actGetCategories.pending, (state) => {
         state.loading = "pending";
         state.error = null;
+        state.records = [];
       })
       .addCase(actGetCategories.fulfilled, (state, action) => {
         state.loading = "success";
         state.records = action.payload.data;
+        state.error = null;
       })
       .addCase(actGetCategories.rejected, (state, action) => {
         state.loading = "failed";
+        state.records = [];
         if (action.payload && typeof action.payload == "string") {
           state.error = action.payload;
         }
