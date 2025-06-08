@@ -8,3 +8,12 @@ export type TCategory = {
   prefix: string;
   img: string;
 };
+
+//----------------| products types
+export type TProduct = {
+  id: number;
+  title: string;
+  cat_prefix: string;
+  img: string;
+  price: string;
+};

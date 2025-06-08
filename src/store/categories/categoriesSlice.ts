@@ -27,7 +27,7 @@ const categoriesSlice = createSlice({
       })
       .addCase(actGetCategories.fulfilled, (state, action) => {
         state.loading = "success";
-        state.records = action.payload.data;
+        state.records = action.payload;
         state.error = null;
       })
       .addCase(actGetCategories.rejected, (state, action) => {
