@@ -7,7 +7,7 @@ type TResponse = TProduct[] | undefined;
 
 const actGetProductsByCatPrefix = createAsyncThunk(
   "products/actGetProducts",
-  async (prefix:string, thunkAPI) => {
+  async (prefix: string, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
       const response = await api.get<TResponse>(

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import actGetProductsByCatPrefix from "./act/actGetProductsByCatPrefix";
 
 interface IProductsState {
-  records: TProduct[] | undefined;
+  records: TProduct[];
   loading: TLoading;
   error: string | null;
 }
@@ -25,7 +25,11 @@ const productsSlice = createSlice({
       })
       .addCase(actGetProductsByCatPrefix.fulfilled, (state, action) => {
         state.loading = "success";
-        state.records = action.payload;
+        if (action.payload) {
+          state.records = action.payload;
+        } else {
+          state.records = [];
+        }
       })
       .addCase(actGetProductsByCatPrefix.rejected, (state, action) => {
         state.loading = "failed";

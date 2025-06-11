@@ -13,25 +13,22 @@ const Products = () => {
     dispatch(actGetProductsByCatPrefix(params.prefix + ""));
   }, [dispatch, params]);
 
+  const productsList =
+    records.length > 0
+      ? records.map((record) => (
+          <Col
+            xs={3}
+            key={record.id}
+            className="d-flex justify-content-center mb-5 mt-2"
+          >
+            <Product {...record} />
+          </Col>
+        ))
+      : null;
+
   return (
     <Container>
-      <Row>
-        <Col xs={6} md={3} className="d-flex justify-content-center mb-5 mt-2">
-          <Product />
-        </Col>
-        <Col xs={6} md={3} className="d-flex justify-content-center mb-5 mt-2">
-          <Product />
-        </Col>
-        <Col xs={6} md={3} className="d-flex justify-content-center mb-5 mt-2">
-          <Product />
-        </Col>
-        <Col xs={6} md={3} className="d-flex justify-content-center mb-5 mt-2">
-          <Product />
-        </Col>
-        <Col xs={6} md={3} className="d-flex justify-content-center mb-5 mt-2">
-          <Product />
-        </Col>
-      </Row>
+      <Row>{productsList}</Row>
     </Container>
   );
 };
