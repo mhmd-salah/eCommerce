@@ -12,8 +12,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />} errorElement={<Error />}>
       <Route index element={<Home />} />
+      <Route path="categories" element={<Categories />} />
+
       <Route
-        path="products/:prefix"
+        path="categories/products/:prefix"
         element={<Products />}
         loader={({ params }) => {
           if (
@@ -25,10 +27,9 @@ const router = createBrowserRouter(
               statusText: "Category not found",
             });
           }
-          return true;  
+          return true;
         }}
       />
-      <Route path="categories" element={<Categories />} />
       <Route path="about" element={<AboutUs />} />
     </Route>
   )
