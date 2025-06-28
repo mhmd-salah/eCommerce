@@ -1,19 +1,24 @@
 import { Category } from "@components/eCommerce";
 import { actGetCategories } from "@store/categories/categoriesSlice";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
 const Categories = () => {
   const dispatch = useAppDispatch();
+  const hasFetchedRef = useRef(false);
   const { loading, error, records } = useAppSelector(
     (state) => state.categories
   );
 
   useEffect(() => {
-    dispatch(actGetCategories());
+    if (!hasFetchedRef.current && records.length === 0) {
+      hasFetchedRef.current = true
+      dispatch(actGetCategories());
+    }
   }, [dispatch, records]);
-
+  if (loading) console.log("loading");
+  if (error) console.log(error);
   const categoriesList =
     records.length > 0
       ? records.map((record) => {
