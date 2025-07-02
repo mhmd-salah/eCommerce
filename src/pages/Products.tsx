@@ -6,7 +6,7 @@ import {
   productsCleanUp,
 } from "@store/products/productsSlice";
 import { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 const Products = () => {
