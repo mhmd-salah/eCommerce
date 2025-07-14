@@ -5,13 +5,15 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
-    <Container className={styles.container}>
-      <Header />
-      <div className={styles.wrapper}>
-        <Outlet />
-      </div>
+    <>
+      <Container className={styles.container}>
+        <Header />
+        <div className={styles.wrapper}>
+          <Outlet />
+        </div>
       <Footer />
-    </Container>
+      </Container>
+    </>
   );
 };
 
