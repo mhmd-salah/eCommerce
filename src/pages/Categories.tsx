@@ -1,4 +1,4 @@
-import { GridList } from "@components/common";
+import { GridList, Heading } from "@components/common";
 import { Category } from "@components/eCommerce";
 import { Loading } from "@components/feedback";
 import { actGetCategories } from "@store/categories/categoriesSlice";
@@ -24,6 +24,7 @@ const Categories = () => {
 
   return (
     <Container>
+      <Heading>Categories</Heading>
       <Loading error={error} status={loading}>
         <GridList
           records={records}
