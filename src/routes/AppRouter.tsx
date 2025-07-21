@@ -7,6 +7,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import Cart from "src/pages/Cart";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
           return true;
         }}
       />
+      <Route path="cart" element={<Cart />} />
       <Route path="about" element={<AboutUs />} />
     </Route>
   )

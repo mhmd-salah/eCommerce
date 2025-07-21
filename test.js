@@ -44,4 +44,3 @@ console.log(Auth.check("1234")); // true
 console.log(Auth.password);      // undefined ❌
 
 
-

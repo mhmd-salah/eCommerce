@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react(), svgr(), tsconfigPaths()],
   server: {
     port: 5000,
+    
   },
   css: {
     modules: {

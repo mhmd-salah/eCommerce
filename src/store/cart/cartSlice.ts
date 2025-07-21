@@ -1,15 +1,20 @@
-import type { TProduct } from "@customTypes";
+import type { TLoading, TProduct } from "@customTypes";
+import actGetProductsByItems from "./act/actGetProductsByItems";
 import { getCartTotalQuantitySelector } from "./selectors";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface ICart {
   items: { [key: number]: number };
-  productFullInfo: TProduct[];
+  productsFullInfo: TProduct[];
+  loading: TLoading;
+  error: null | string;
 }
 
 const initialState: ICart = {
   items: {},
-  productFullInfo: [],
+  productsFullInfo: [],
+  loading: "idle",
+  error: null,
 };
 
 const cartSlice = createSlice({
@@ -21,8 +26,24 @@ const cartSlice = createSlice({
       state.items[id] = (state.items[id] || 0) + 1;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(actGetProductsByItems.pending, (state) => {
+      state.loading = "pending";
+      state.error = null;
+    });
+    builder.addCase(actGetProductsByItems.fulfilled, (state, action) => {
+      state.loading = "success";
+      state.productsFullInfo = action.payload;
+    });
+    builder.addCase(actGetProductsByItems.rejected, (state, action) => {
+      state.loading = "failed";
+      if (action.payload && typeof action.payload === "string") {
+        state.error = action.payload;
+      }
+    });
+  },
 });
 
-export { getCartTotalQuantitySelector };
+export { getCartTotalQuantitySelector, actGetProductsByItems };
 export const { addToCart } = cartSlice.actions;
 export default cartSlice.reducer;
