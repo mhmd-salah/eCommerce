@@ -1,5 +1,6 @@
 import { Heading } from "@components/common";
 import { CartItemsList, CartSubtotalPrice } from "@components/eCommerce";
+import { Loading } from "@components/feedback";
 import {
   actGetProductsByItems,
   cartItemChangeQuantity,
@@ -39,12 +40,20 @@ const Cart = () => {
   return (
     <>
       <Heading>Cart</Heading>
-      <CartItemsList
-        products={products}
-        changeQuantityHandler={changeQuantityHandler}
-        removeItemHandler={removeItemHandler}
-      />
-      <CartSubtotalPrice />
+      <Loading status={loading} error={error}>
+        {products.length ? (
+          <>
+            <CartItemsList
+              products={products}
+              changeQuantityHandler={changeQuantityHandler}
+              removeItemHandler={removeItemHandler}
+            />
+            <CartSubtotalPrice products={products} />
+          </>
+        ) : (
+          "Your Cart is empty"
+        )}
+      </Loading>
     </>
   );
 };
