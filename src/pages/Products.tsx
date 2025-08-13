@@ -10,9 +10,9 @@ import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 const Products = () => {
+  const params = useParams();
   const dispatch = useAppDispatch();
   const { loading, records, error } = useAppSelector((state) => state.products);
-  const params = useParams();
   const cartItems = useAppSelector((state) => state.cart.items);
 
   const productsFullInfo = records.map((el) => ({

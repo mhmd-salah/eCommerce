@@ -28,3 +28,4 @@ class BikeFactory {
 
 const roadBike = BikeFactory.createBike("road")
 roadBike.ride()
+

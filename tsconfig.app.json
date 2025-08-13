@@ -37,7 +37,7 @@
       "@store/*": ["./src/store/*"],
       "@utils/*": ["./src/utils/*"],
       "@layout": ["./src/layout/index.ts"],
-      "@services/*": ["./src/services"]
+      "@services": ["./src/services/index.ts"]
     }
   },
   "include": ["src", "global.d.ts"]
