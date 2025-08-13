@@ -7,12 +7,14 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import Cart from "src/pages/Cart";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />} errorElement={<Error />}>
       <Route index element={<Home />} />
       <Route path="categories" element={<Categories />} />
+      <Route path="cart" element={<Cart/>} />
 
       <Route
         path="categories/products/:prefix"
@@ -26,6 +28,8 @@ const router = createBrowserRouter(
               status: 400,
               statusText: "Category not found",
             });
+
+
           }
           return true;
         }}
