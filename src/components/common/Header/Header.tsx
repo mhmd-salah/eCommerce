@@ -1,8 +1,8 @@
 import { Badge, Container, Nav, Navbar, NavLink } from "react-bootstrap";
-import { HeaderBasket } from "../../eCommerce";
+import { HeaderBasket, HeaderWishlist } from "../../eCommerce";
 import styles from "./styles.module.css";
 
-const { headerContainer, headerLogo } = styles;
+const { headerContainer, headerLogo, headerLeftBar } = styles;
 
 const Header = () => {
   return (
@@ -11,8 +11,10 @@ const Header = () => {
         <h1 className={headerLogo}>
           <span>our</span> <Badge bg="info">Ecommerce</Badge>
         </h1>
-
-        <HeaderBasket />
+        <div className={headerLeftBar}>
+          <HeaderBasket />
+          <HeaderWishlist />
+        </div>
       </div>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
@@ -47,4 +49,4 @@ const Header = () => {
 
 export default Header;
 
-// hello world 
+// hello world

@@ -6,16 +6,13 @@ import { getCartTotalQuantitySelector } from "@store/cart/selectors";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-const { basketContainer, basketQuantity, pumpCartQuantity, basketCart } =
-  styles;
+const { container, totalNum, pumpAnimate, iconWrapper } = styles;
 const HeaderBasket = () => {
   const [isAnimate, setIsAnimate] = useState(false);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
 
   const totalQuantity = useAppSelector(getCartTotalQuantitySelector);
-  const quantityStyle = `${basketQuantity} ${
-    isAnimate ? pumpCartQuantity : ""
-  }`;
+  const quantityStyle = `${totalNum} ${isAnimate ? pumpAnimate : ""}`;
   useEffect(() => {
     if (!totalQuantity) {
       return;
@@ -30,8 +27,8 @@ const HeaderBasket = () => {
   }, [totalQuantity]);
 
   return (
-    <div className={basketContainer} onClick={()=>navigate("/cart")}>
-      <div className={basketCart}>
+    <div className={container} onClick={() => navigate("/cart")}>
+      <div className={iconWrapper}>
         <Logo title="basket icon " />
         <div className={quantityStyle}>{totalQuantity}</div>
       </div>

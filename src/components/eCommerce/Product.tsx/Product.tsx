@@ -4,7 +4,10 @@ import type { TProduct } from "@customTypes";
 import { useAppDispatch } from "@store/hooks";
 import { addToCart } from "@store/cart/cartSlice";
 import { memo, useEffect, useState } from "react";
-const { product, productImg, maximumNotice } = styles;
+import Like from "@assets/svg/love-outline.svg?react";
+import likeFill from "@assets/svg/love.svg?react";
+
+const { product, productImg, maximumNotice, wishlistBtn } = styles;
 
 const Product = ({ id, img, title, price, max, quantity }: TProduct) => {
   console.log("product fire");
@@ -34,6 +37,9 @@ const Product = ({ id, img, title, price, max, quantity }: TProduct) => {
   };
   return (
     <div className={product}>
+      <div className={wishlistBtn}>
+        <Like />
+      </div>
       <div className={productImg}>
         <img src={img} alt={title} />
       </div>
