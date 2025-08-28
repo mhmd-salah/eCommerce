@@ -1,8 +1,8 @@
-import { useAppSelector } from "@store/hooks";
+// import { useAppSelector } from "@store/hooks";
 import styles from "./styles.module.css";
 
-import Logo from "@assets/svg/cart.svg?react";
-import { getCartTotalQuantitySelector } from "@store/cart/selectors";
+import Logo from "@assets/svg/wishlist.svg?react";
+// import { getCartTotalQuantitySelector } from "@store/cart/selectors";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -11,7 +11,7 @@ const HeaderWishlist = () => {
   const [isAnimate, setIsAnimate] = useState(false);
   const navigate = useNavigate();
 
-  const totalQuantity = useAppSelector(getCartTotalQuantitySelector);
+  const totalQuantity = 0;
   const quantityStyle = `${totalNum} ${isAnimate ? pumpAnimate : ""}`;
   useEffect(() => {
     if (!totalQuantity) {
@@ -29,10 +29,12 @@ const HeaderWishlist = () => {
   return (
     <div className={container} onClick={() => navigate("/cart")}>
       <div className={iconWrapper}>
-        <Logo title="basket icon " />
-        <div className={quantityStyle}>{totalQuantity}</div>
+        <Logo title="wishlist icon " />
+        {totalQuantity > 0 && (
+          <div className={quantityStyle}>{totalQuantity}</div>
+        )}
       </div>
-      <h3>Cart</h3>
+      <h3>Wishlist</h3>
     </div>
   );
 };

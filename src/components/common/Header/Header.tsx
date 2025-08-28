@@ -12,8 +12,8 @@ const Header = () => {
           <span>our</span> <Badge bg="info">Ecommerce</Badge>
         </h1>
         <div className={headerLeftBar}>
-          <HeaderBasket />
           <HeaderWishlist />
+          <HeaderBasket />
         </div>
       </div>
       <Navbar expand="lg" className="bg-body-tertiary">
